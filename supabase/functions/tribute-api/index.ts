@@ -17,7 +17,7 @@ export async function handler(req: Request){
  if(req.method==="GET"){
   const {data,error}=await db.from("tributes").select("display_name,country_code,message,created_at,city,latitude,longitude").eq("status","approved").order("created_at",{ascending:false}).limit(500);
   if(error)return new Response(JSON.stringify({error:"Unable to load tributes"}),{status:500,headers});
-  return new Response(JSON.stringify({tributes:(data||[]).map(x=>({name:x.display_name,message:x.message,country:x.country_code,city:x.city,lat:x.latitude??locations[x.country_code]?.[0]??0,lng:x.longitude??locations[x.country_code]?.[1]??0,date:x.created_at}))}),{headers});
+  return new Response(JSON.stringify({acceptingSubmissions:Boolean(Deno.env.get("TURNSTILE_SECRET")),tributes:(data||[]).map(x=>({name:x.display_name,message:x.message,country:x.country_code,city:x.city,lat:x.latitude??locations[x.country_code]?.[0]??0,lng:x.longitude??locations[x.country_code]?.[1]??0,date:x.created_at}))}),{headers});
  }
  if(Number(req.headers.get("content-length"))>16384)return new Response(JSON.stringify({error:"Payload too large"}),{status:413,headers});
  let body:any;try{const raw=await req.text();if(new TextEncoder().encode(raw).length>16384)return new Response(JSON.stringify({error:"Payload too large"}),{status:413,headers});body=JSON.parse(raw)}catch{return new Response(JSON.stringify({error:"Invalid JSON"}),{status:400,headers})}
