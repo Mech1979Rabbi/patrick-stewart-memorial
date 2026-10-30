@@ -2,13 +2,8 @@
 
 Independent international fan memorial, initially in German, English and Spanish.
 
-## Community / Gemeinschaft / Comunidad
-
-**EN:** Everyone is welcome to suggest ideas, improve translations, design the world map, or contribute code. See [CONTRIBUTING.md](CONTRIBUTING.md) and [open an issue](https://github.com/Mech1979Rabbi/patrick-stewart-memorial/issues).
-
-**DE:** Jeder kann Ideen vorschlagen, Übersetzungen verbessern oder bei Design, Weltkarte und Programmierung mitarbeiten. Siehe [CONTRIBUTING.md](CONTRIBUTING.md).
-
-**ES:** Todas las personas pueden proponer ideas, mejorar traducciones y colaborar en el diseño, el mapa mundial o el código. Consulta [CONTRIBUTING.md](CONTRIBUTING.md).
+## Project ownership
+This is a personal project maintained solely by the repository owner. The public repository is provided for transparency, not for collaborative development.
 
 ## Prototype
 Static website for GitHub Pages with an automatically changing tribute header, language switching, and a world map concept. Visitor submissions are deliberately disabled until a moderated backend is connected.
