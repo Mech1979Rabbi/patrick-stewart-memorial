@@ -11,3 +11,7 @@ create index if not exists tributes_approved_idx on public.tributes (created_at 
 alter table public.tributes enable row level security;
 -- No public table policies: only the server-side Edge Function uses service_role.
 -- Approve messages in Supabase Table Editor: status = approved.
+
+-- Public clients cannot read pending content or bypass owner moderation.
+revoke all on public.tributes from anon, authenticated;
+grant select, insert, update, delete on public.tributes to service_role;

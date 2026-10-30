@@ -14,3 +14,13 @@ The public website stays online while submissions remain disabled until all conf
 Only the project owner with Supabase dashboard access can approve messages. No public database policies exist. The server-side function publishes only approved rows, and the displayed map uses country-level approximate coordinates, never precise visitor location.
 
 The current map has a fixed set of supported countries; expand it for full international coverage before launch.
+
+## Development checks
+
+Use Node.js 24: `node --check main.js` and `node --test tests/*.test.mjs`.
+Serve the static checkout with `python3 -m http.server 8000 --bind 127.0.0.1`.
+The API tests use mocked Supabase and Turnstile responses; they do not validate a live database or its deployed RLS configuration.
+
+The API checks Turnstile's returned hostname against `ALLOWED_ORIGIN`. Configure the widget for that exact hostname. The SQL revokes table access from both public API roles (`anon`, `authenticated`); moderation remains exclusively in the owner's Supabase dashboard. Never grant visitors dashboard access or the service role key.
+
+Before deployment, test against a staging Supabase project: anonymous and authenticated clients must be unable to select pending rows or update statuses; a valid submission must create exactly one pending row; approving it in the dashboard must make it appear in GET responses, and rejecting it must remove it. Missing credentials, failing CAPTCHA and malformed requests must not insert rows. Deploying migrations and functions to the public project requires the owner's explicit release approval.
