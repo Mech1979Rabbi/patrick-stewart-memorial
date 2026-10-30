@@ -35,6 +35,7 @@ function setupTributeForm(){
  if(!form||!status||!button)return;
  if(!acceptingSubmissions||!config.apiUrl||!config.turnstileSiteKey){status.textContent=i18n[language].pending;return}
  button.disabled=false;
+ status.textContent={de:"Das Kondolenzbuch ist geöffnet. Bitte fülle die Felder aus und schließe die Sicherheitsprüfung ab.",en:"The tribute book is open. Please fill in the fields and complete the verification.",es:"El libro está abierto. Completa los campos y la verificación."}[language];
  const mount=()=>{if(!form.isConnected)return;if(typeof turnstile==="undefined"){setTimeout(mount,250);return}
  try{captchaWidget=turnstile.render("#captcha",{sitekey:config.turnstileSiteKey,callback:token=>{captchaToken=token},"expired-callback":()=>{captchaToken=""}})}catch{status.textContent="Captcha unavailable";button.disabled=true}};
  mount();
