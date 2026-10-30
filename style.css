@@ -36,3 +36,5 @@
 #world-map .leaflet-popup-content{color:#15263a;overflow-wrap:anywhere}
 
 a{color:#eed39f}button:focus-visible,a:focus-visible{outline:3px solid #eed39f;outline-offset:4px}textarea{overflow-wrap:anywhere}@media(max-width:420px){main{padding:0 12px}.maparea,.formarea{padding:18px}.hero{padding:24px 12px}h2{font-size:30px}}
+
+.location-map{height:260px;border-radius:8px;background:#14263b}.coordinates{display:grid;grid-template-columns:1fr 1fr;gap:12px}.custom-location[hidden]{display:none}.location-picker .leaflet-control-attribution{font-size:10px}

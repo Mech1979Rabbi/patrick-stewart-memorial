@@ -1,9 +1,7 @@
-# Harden moderated tributes and repair map lifecycle
+# Add space scenery, selectable locations and direct tribute publication
 
-Visitor payloads now receive strict type, size and country validation. The endpoint always inserts pending submissions, checks CAPTCHA hostname, times out verification calls and handles upstream exceptions. SQL explicitly revokes public table access; the owner continues moderating in the private Supabase dashboard.
+The globe now uses a locally stored daytime Earth texture without city lights, procedural stars, a shaded Moon and a visible Sun whose directional light illuminates Earth. Visitors can select major cities for all supported countries or place a custom point on a separate map; coordinates also have keyboard-accessible inputs.
 
-Fix map cleanup on language changes, invalid stored languages, CAPTCHA cleanup and reduced-motion rotation. Improve keyboard focus and narrow layouts. Remove the unsupported death-year assertion.
+New messages publish immediately after validation and CAPTCHA, per the owner’s updated requirement. Existing pending records remain pending. Public database roles cannot directly access the table. Rejected messages remain excluded. Apply the additive coordinate schema before deploying the endpoint; private credentials stay in Supabase.
 
-Validation: seven mocked API regression tests pass; JavaScript syntax and git whitespace checks pass. Live Supabase/RLS testing remains blocked by network access and missing project/Turnstile configuration. No deployment or changes to main are included.
-
-Remaining release work: licensed photographic gallery, full translation coverage, live security tests, production throttling, legal/privacy content and multilingual SEO. Existing images and map assets require a documented license review. Do not publish before these are reviewed by the owner.
+Validation: nine mocked API tests pass, including direct publication, coordinate limits, CAPTCHA rejection and malformed inputs. Browser checks cover rendering, city options and custom location selection. No production migration, merge or website publication was performed. Live Supabase configuration is still required. The feed currently shows the newest 500 messages; large-scale pagination/aggregation remains future work. Portrait gallery remains blocked on image-source access.
