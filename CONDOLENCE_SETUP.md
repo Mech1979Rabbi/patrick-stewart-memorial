@@ -1,16 +1,13 @@
-# Kondolenzbuch einrichten / Condolence book setup
+# Public tributes and location setup
 
-The public website stays online while submissions remain disabled until all configuration is complete.
+New submissions publish immediately after server-side validation and Turnstile verification, as requested by the owner. No manual approval queue is used for new messages. Existing pending messages are not automatically published.
 
-1. Create a Supabase project. Open SQL Editor and execute `supabase/schema.sql`.
-2. Install Supabase CLI, link the project, deploy `supabase/functions/tribute-api` with `supabase functions deploy tribute-api --no-verify-jwt`. Never publish service-role keys.
-3. Create a Cloudflare Turnstile widget for the GitHub Pages domain and obtain its public site key and private secret.
-4. In Supabase Edge Function secrets, set `TURNSTILE_SECRET` to the private secret and `ALLOWED_ORIGIN` to `https://mech1979rabbi.github.io`. The standard `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` must be available as secrets.
-5. Edit the public `config.js` with the function endpoint `https://YOUR_PROJECT.supabase.co/functions/v1/tribute-api` and the **public** Turnstile site key. Never put the private Turnstile secret or Supabase service role key in GitHub.
-6. Test with a dummy submission. It must appear as `pending` in the Supabase Table Editor and must **not** appear on the map.
-7. As owner, review the message in Supabase Table Editor, set `status` to `approved` and refresh the webpage. It will then appear on the globe and map. Set `rejected` to reject.
-8. Before accepting public messages, publish a correct legal notice, privacy policy, deletion/contact procedure and retention policy. Add monitoring, request throttling/WAF rules, and data backup. Cloudflare Turnstile reduces automated spam but is not a complete rate limiter.
+1. Apply `supabase/schema.sql` before deploying the updated Edge Function. It adds optional city and paired latitude/longitude columns. Existing records keep their country-level position.
+2. Deploy `tribute-api` with the Supabase CLI (`--no-verify-jwt`). Configure `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `TURNSTILE_SECRET` and `ALLOWED_ORIGIN` in Supabase secrets. Never put private keys in the website.
+3. Set the public Turnstile site key in `config.js`. Configure the Turnstile widget for the hostname of `ALLOWED_ORIGIN`.
+4. Submit a staging message with a city or custom point: expect HTTP 201 and status approved, followed by its public appearance. Invalid coordinates and failed CAPTCHA must not insert a record.
+5. Hide abusive entries in the private Supabase dashboard by setting status to rejected. Public roles retain no direct database access. CAPTCHA is not a complete rate limiter; configure production request limits and a reporting/contact process.
 
-Only the project owner with Supabase dashboard access can approve messages. No public database policies exist. The server-side function publishes only approved rows, and the displayed map uses country-level approximate coordinates, never precise visitor location.
+Coordinates are rounded server-side to two decimals. Visitors are told to choose approximate locations. Country, city and custom points are visitor assertions, not verified residence. The public feed currently returns the newest 500 entries; it is not a complete 20,000-point archive.
 
-The current map has a fixed set of supported countries; expand it for full international coverage before launch.
+Run `node --test tests/*.test.mjs` using Node 24. These tests mock external services; live RLS, CAPTCHA and database checks are still required. Serve with `python3 -m http.server 8000 --bind 127.0.0.1` and verify desktop/mobile views and map controls. Publish migrations/functions only with the owner's explicit release approval.
