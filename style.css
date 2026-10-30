@@ -13,3 +13,8 @@
 #world-map .leaflet-control-zoom a{background:#14233b;color:#d5e2f4;border-color:#314660}
 #world-map .leaflet-control-attribution{background:#07111ed9;color:#d1d9e6}
 #world-map .leaflet-control-attribution a{color:#f0c879}
+
+/* Rotating 3D Earth in a dark space setting */
+#world-map{height:520px;min-height:360px;background:radial-gradient(ellipse at center,#0b1930 0%,#020713 70%);border-radius:14px;overflow:hidden;position:relative;touch-action:pan-y}
+#world-map canvas{display:block;max-width:100%;outline:none}
+@media(max-width:700px){#world-map{height:390px}}
