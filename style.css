@@ -18,3 +18,11 @@
 #world-map{height:520px;min-height:360px;background:radial-gradient(ellipse at center,#0b1930 0%,#020713 70%);border-radius:14px;overflow:hidden;position:relative;touch-action:pan-y}
 #world-map canvas{display:block;max-width:100%;outline:none}
 @media(max-width:700px){#world-map{height:390px}}
+
+/* 3D night globe and occasional decorative starship flybys */
+#world-map{position:relative;height:540px;background:#020612;overflow:hidden;isolation:isolate}
+#world-map canvas{display:block}
+.passing-ship{position:absolute;left:-110px;z-index:3;pointer-events:none;filter:drop-shadow(0 0 7px #8ab9f5);animation:starship-flyby var(--flight-duration,12s) linear forwards}
+@keyframes starship-flyby{0%{left:-110px;opacity:0}8%{opacity:.85}88%{opacity:.85}100%{left:calc(100% + 110px);opacity:0}}
+@media(max-width:700px){#world-map{height:390px}.passing-ship svg{width:54px}}
+@media(prefers-reduced-motion:reduce){.passing-ship{display:none}}
