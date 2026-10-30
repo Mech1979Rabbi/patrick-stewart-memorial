@@ -1,6 +1,5 @@
-// Fill these public values after creating Supabase Edge Function and Cloudflare Turnstile.
-// Do NOT place secret keys here.
+// Public configuration only. Never commit database passwords or secret keys.
 window.MEMORIAL_CONFIG = {
- apiUrl: "",
+ apiUrl: "https://izvzcnxpytcytunpqgkh.supabase.co/functions/v1/tribute-api",
  turnstileSiteKey: ""
 };
