@@ -27,12 +27,16 @@ export async function handler(req: Request){
  const hasPoint=body.latitude!==undefined||body.longitude!==undefined;
  if((hasPoint&&(!Number.isFinite(body.latitude)||!Number.isFinite(body.longitude)||Math.abs(body.latitude)>90||Math.abs(body.longitude)>180))||(body.city!==undefined&&(typeof body.city!=="string"||body.city.trim().length<1||body.city.length>100||!hasPoint)))return new Response(JSON.stringify({error:"Invalid location"}),{status:400,headers});
  const point=hasPoint?{latitude:Math.round(body.latitude*100)/100,longitude:Math.round(body.longitude*100)/100,city:body.city?.trim()||null}:{};
- const secret=Deno.env.get("TURNSTILE_SECRET");
+ const secret=Deno.env.get("TURNSTILE_SECRET")?.trim();
  if(!secret)return new Response(JSON.stringify({error:"Captcha not configured"}),{status:503,headers});
 
  const check=await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({secret,response:token}),signal:AbortSignal.timeout(10000)});
  const verification=await check.json();
- if(!check.ok||verification.success!==true||verification.hostname!==new URL(allowed).hostname)return new Response(JSON.stringify({error:"Captcha failed"}),{status:403,headers});
+ const codes=Array.isArray(verification["error-codes"])?verification["error-codes"]:[];
+ if(codes.includes("invalid-input-secret")||codes.includes("missing-input-secret"))return new Response(JSON.stringify({error:"Captcha configuration invalid"}),{status:503,headers});
+ if(!check.ok&&!codes.length)return new Response(JSON.stringify({error:"Captcha service unavailable"}),{status:503,headers});
+ if(verification.success!==true)return new Response(JSON.stringify({error:codes.includes("timeout-or-duplicate")?"Captcha expired":"Captcha failed"}),{status:403,headers});
+ if(verification.hostname!==new URL(allowed).hostname)return new Response(JSON.stringify({error:"Captcha hostname mismatch"}),{status:403,headers});
  const {error}=await db.from("tributes").insert({display_name:name,country_code:country,message,...point,status:"approved"});
  if(error)return new Response(JSON.stringify({error:"Submission failed"}),{status:500,headers});
  return new Response(JSON.stringify({ok:true,status:"approved"}),{status:201,headers});
