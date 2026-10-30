@@ -1,30 +1,26 @@
-# Contributing / Mitmachen / Colaborar
+# Ideas first — owner approval required
 
-Thank you for helping build this independent, international memorial project.
+This project is managed by its owner. All proposals must be reviewed and explicitly approved by the owner before implementation. Submitting an idea does not grant permission to change the website.
 
 ## English
-Ideas, translations, accessibility improvements, map visualizations, design and code contributions are welcome.
-1. Open an [issue](https://github.com/Mech1979Rabbi/patrick-stewart-memorial/issues) to propose an idea or report a problem.
-2. For code, fork the repository, make a focused change in a branch and open a pull request.
-3. Explain your changes and how you tested them. Please be respectful in discussions.
-4. Do not submit copyrighted film stills, portraits or other assets without permission or a compatible license. Never include personal information or API secrets.
-5. Public tribute submissions must remain disabled until moderation, privacy protections and abuse prevention are implemented.
+1. Submit an idea using a [GitHub Issue](https://github.com/Mech1979Rabbi/patrick-stewart-memorial/issues). Explain the goal and suggested approach.
+2. Wait for the project owner's decision. Do not begin implementation or submit code unless the owner explicitly approves the idea.
+3. After approval, the owner may implement the idea personally or invite a contributor to prepare a pull request.
+4. All pull requests are proposals only. **Only the owner decides whether and when changes are merged and published.** No direct pushes to the main branch are permitted by contributors.
 
 ## Deutsch
-Ideen, Übersetzungen, Verbesserungen der Barrierefreiheit, Weltkarten, Design und Programmcode sind willkommen.
-1. Erstelle ein [Issue](https://github.com/Mech1979Rabbi/patrick-stewart-memorial/issues) für Ideen oder Fehler.
-2. Für Code: Repository forken, Änderungen in einem Branch entwickeln und einen Pull Request eröffnen.
-3. Beschreibe deine Änderung und wie du sie getestet hast. Bitte respektvoll miteinander umgehen.
-4. Keine urheberrechtlich geschützten Filmfotos oder Porträts ohne Nutzungsrechte hochladen. Keine persönlichen Daten oder Zugangsschlüssel veröffentlichen.
-5. Kondolenzeinträge erst nach Einrichtung von Moderation, Datenschutz und Missbrauchsschutz aktivieren.
+1. Reiche deine Idee zunächst als [GitHub-Issue](https://github.com/Mech1979Rabbi/patrick-stewart-memorial/issues) ein und beschreibe Ziel und Umsetzungsvorschlag.
+2. Warte auf die ausdrückliche Entscheidung des Projektinhabers. Ohne vorherige Freigabe soll keine Umsetzung begonnen und kein Programmcode eingereicht werden.
+3. Nach Freigabe kann der Projektinhaber die Idee selbst umsetzen oder einen Beitrag per Pull Request anfordern.
+4. **Die letzte Entscheidung über jede Änderung und Veröffentlichung trifft ausschließlich der Projektinhaber.** Mitwirkende dürfen nicht direkt auf den Hauptbranch schreiben.
 
 ## Español
-Se agradecen ideas, traducciones, mejoras de accesibilidad, mapas, diseño y contribuciones de código.
-1. Abre un [issue](https://github.com/Mech1979Rabbi/patrick-stewart-memorial/issues) para proponer ideas o informar de errores.
-2. Para aportar código, crea un fork, realiza cambios en una rama y abre una pull request.
-3. Explica los cambios y las pruebas realizadas. Mantén siempre un trato respetuoso.
-4. No subas fotografías ni imágenes de películas protegidas por derechos de autor sin permiso o licencia adecuada. No publiques datos personales ni claves.
-5. Los mensajes públicos permanecerán desactivados hasta contar con moderación, privacidad y protección contra abusos.
+1. Presenta primero tu idea mediante un [issue de GitHub](https://github.com/Mech1979Rabbi/patrick-stewart-memorial/issues) y explica el objetivo y la solución propuesta.
+2. Espera la aprobación expresa del propietario del proyecto. No empieces a desarrollar ni envíes código sin su autorización previa.
+3. Tras la aprobación, el propietario podrá implementar la idea o solicitar una contribución mediante una pull request.
+4. **Solo el propietario toma la decisión final sobre cada cambio y publicación.** Los colaboradores no deben escribir directamente en la rama principal.
 
-## Project principles
-This is an unofficial fan project, not an official memorial endorsed by the family or studios. Maintainers review contributions before merging. Contributors retain responsibility for ensuring they have rights to their submissions.
+## Safety and rights
+This is an independent, unofficial fan memorial. Do not submit personal data, passwords, or unlicensed film photographs. Public tributes remain disabled until privacy, abuse prevention and moderation are implemented.
+
+**Repository enforcement:** These rules describe the intended workflow. The owner should also enable branch protection/rulesets on `main`, require pull requests and approvals, and limit bypass permissions to the owner.
