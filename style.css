@@ -26,3 +26,11 @@
 @keyframes starship-flyby{0%{left:-110px;opacity:0}8%{opacity:.85}88%{opacity:.85}100%{left:calc(100% + 110px);opacity:0}}
 @media(max-width:700px){#world-map{height:390px}.passing-ship svg{width:54px}}
 @media(prefers-reduced-motion:reduce){.passing-ship{display:none}}
+
+/* Switch between Earth globe and detailed dark 2D map */
+.map-switch{display:flex;gap:8px;margin:12px 0 16px}
+.map-switch button{background:#15263d;border-color:#38516d;color:#e7edf8}
+.map-switch button.active{background:#d0ac70;color:#101725;border-color:#d0ac70;font-weight:700}
+#world-map .leaflet-container{background:#020612}
+#world-map .leaflet-control-attribution{font-size:11px}
+#world-map .leaflet-popup-content{color:#15263a;overflow-wrap:anywhere}
